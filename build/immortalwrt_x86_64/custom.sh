@@ -25,7 +25,7 @@ NET="package/base-files/files/bin/config_generate"
 ZZZ="package/emortal/default-settings/files/99-default-settings"
 
 #
-sed -i "s#192.168.1.1#10.0.0.1#g" $NET                                                     # 定制默认IP
+sed -i "s#192.168.1.1#192.168.1.2#g" $NET                                                     # 定制默认IP
 # sed -i "s#ImmortalWrt#ImmortalWrt-X86#g" $NET                                          # 修改默认名称为 ImmortalWrt-X86
 # sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' $ZZZ                                          # 取消系统默认密码
 echo "uci set luci.main.mediaurlbase=/luci-static/argon" >> $ZZZ                      # 设置默认主题(如果编译可会自动修改默认主题的，有可能会失效)
@@ -50,7 +50,7 @@ EOF
 
 cat >> $ZZZ <<-EOF
 # 设置网络-旁路由模式
-uci set network.lan.gateway='10.0.0.254'                     # 旁路由设置 IPv4 网关
+uci set network.lan.gateway='192.168.1.2'                     # 旁路由设置 IPv4 网关
 uci set network.lan.dns='223.5.5.5 119.29.29.29'            # 旁路由设置 DNS(多个DNS要用空格分开)
 uci set dhcp.lan.ignore='1'                                  # 旁路由关闭DHCP功能
 uci delete network.lan.type                                  # 旁路由桥接模式-禁用
